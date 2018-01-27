@@ -31,13 +31,15 @@ public class TriggerInput : MonoBehaviour {
         float vibratioRight = (state.Triggers.Right < targetRight) ? (1f / targetRight) * state.Triggers.Right : (state.Triggers.Right - 1f) / (targetRight - 1f);
         GamePad.SetVibration(playerIndex, vibrationLeft, vibratioRight);
 
-        if (vibrationLeft > correctnessThreshold && vibratioRight > correctnessThreshold)
-        {
-            statusLabel.text = "SWEET!";
-        }
-        else
-        {
-            statusLabel.text = "KEEP ADJUSTING";
+        if (statusLabel != null) {
+            if (vibrationLeft > correctnessThreshold && vibratioRight > correctnessThreshold)
+            {
+                statusLabel.text = "SWEET!";
+            }
+            else
+            {
+                statusLabel.text = "KEEP ADJUSTING";
+            }
         }
 
         GameManager.Instance.SetPercentageCorruptions(1f - vibrationLeft, 1f - vibratioRight);
