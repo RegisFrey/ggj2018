@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
         {
             _instance = this;
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     public void SetPercentageCorruptions(float first, float second)
