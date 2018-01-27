@@ -27,8 +27,6 @@ public class LetterGrid : MonoBehaviour {
 	public List<string> noiseWords;
 	
 	[Header("Runtime")]
-	[Range(0, 1)]
-	public float percentageCorruption;
 	public int offset;
 	public string targetWord;
 	public int targetWordStart;
@@ -61,7 +59,7 @@ public class LetterGrid : MonoBehaviour {
 			for(int i = 0; i < grid.Count; i++)
 			{
 				// wrap i + offset
-				RenderGridLetter(grid[i], plaintext[i + offset], percentageCorruption, false);
+				RenderGridLetter(grid[i], plaintext[i + offset], GameManager.Instance.PercentageCorruption, false);
 			}
 			yield return new WaitForSeconds(numSecs);
 		}	
