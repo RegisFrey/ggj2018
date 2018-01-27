@@ -5,8 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     [Range(0, 1)]
-    public float percentageCorruption;
+    public float percentageCorruption = 1f;
 
+    private float percentageCorruptionFirst;
+    private float percentageCorruptionSecond;
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -25,6 +27,15 @@ public class GameManager : MonoBehaviour {
         {
             _instance = this;
         }
+    }
+
+    public void SetPercentageCorruptions(float first, float second)
+    {
+        percentageCorruptionFirst = first;
+        percentageCorruptionSecond = second;
+
+        // Integration for now:
+        percentageCorruption = (percentageCorruptionFirst + percentageCorruptionSecond) / 2f;
     }
 
     public float PercentageCorruption
