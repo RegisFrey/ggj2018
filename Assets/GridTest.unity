@@ -369,15 +369,15 @@ MonoBehaviour:
   correctedAlpha: ABCDEFGHIJKLMNOPQRSTUVWXYZ
   corruptedSymbol: '!@#$%^&*()?1234567890~.,<>{}[]\|/'
   codeWords:
-  - DILARA
+  - REGIS IS THE MOLE
   noiseWords:
   - TOP SECRET
   - IT'S BEEN FOUND THAT THE CIA IS ON US
-  - DEREK IS NOW OUR MOLE
+  - DRUIDS
   - I REPEAT
   - DEREK
   - 'IS '
-  - 'OUR '
+  - NOT
   - MOLE
   - LARGE
   - LAST
