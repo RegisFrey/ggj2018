@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+  
+    public UIManger UIManager;
 
     [Range(0, 1)]
     public float percentageCorruption = 1f;
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour {
         // Integration for now:
         percentageCorruption = (percentageCorruptionFirst + percentageCorruptionSecond) / 2f;
     }
-
+    
     public float PercentageCorruption
     {
         get { return percentageCorruption; }
