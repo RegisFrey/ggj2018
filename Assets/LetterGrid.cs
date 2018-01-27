@@ -41,17 +41,17 @@ public class LetterGrid : MonoBehaviour {
 		CreatePlainText();
 		// Setup grid
 		grid = new List<GridLetter>();
-    for(int i = 0; i < GridCharacters(); i++)
-    {
-        grid.Add( 
-					CreateGridLetter( 
-						new Vector2(
-							((i % gridCols) * gridWidth), 
-							(Mathf.Floor(i / gridCols) * gridHeight)
-						) 
-					)
-				);
-    }
+        for(int i = 0; i < GridCharacters(); i++)
+        {
+            grid.Add( 
+					    CreateGridLetter( 
+						    new Vector2(
+							    ((i % gridCols) * gridWidth), 
+							    (Mathf.Floor(i / gridCols) * gridHeight * -1)
+						    ) 
+					    )
+				    );
+        }
 		StartCoroutine("UpdateLetters", 1f);
 	}
 	
@@ -73,17 +73,26 @@ public class LetterGrid : MonoBehaviour {
 	
 	void CreatePlainText() {
 		int gridCharacters = GridCharacters();
+        int randIndex;
 		while(plaintext.Length < gridCharacters) {
-			int randIndex = Random.Range(0, noiseWords.Count);
+			randIndex = Random.Range(0, noiseWords.Count);
 			plaintext = plaintext + ' ' + noiseWords[randIndex];
 		}
-		// corrupt plain text a bit
+        // corrupt plain text a bit
+
+        // add the code word
+        randIndex = Random.Range(0, plaintext.Length);
+        targetWord = codeWords[Random.Range(0,codeWords.Count)];
+        plaintext = plaintext.Substring(0, randIndex) + targetWord + plaintext.Substring(randIndex);
+        
 	}
 	
 	GridLetter CreateGridLetter(Vector2 position) {
-		GridLetter gl = Instantiate(gridLetterPrefab, new Vector3(position.x, position.y, 0), Quaternion.identity) as GridLetter;
+        GridLetter gl = Instantiate(gridLetterPrefab,Vector3.zero, Quaternion.identity) as GridLetter;
 		gl.gameObject.transform.SetParent(gameObject.transform, false);
-		return gl;
+        gl.gameObject.transform.localPosition = new Vector3(position.x, position.y, 0);
+
+        return gl;
 	}
 
 	
