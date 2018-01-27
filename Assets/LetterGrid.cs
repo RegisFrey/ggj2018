@@ -12,7 +12,6 @@ public class LetterGrid : MonoBehaviour {
 	
 	public int gridCols = 12;
 	public int gridRows = 6;
-	public List<GridLetter> grid;
 	
 	public Color targetColor;
 	public Color defaultColor;
@@ -32,9 +31,10 @@ public class LetterGrid : MonoBehaviour {
 	public float percentageCorruption;
 	public int offset;
 	public string targetWord;
+	public int targetWordStart;
 	public string plaintext;
 	public string ciphertext;
-	
+	public List<GridLetter> grid;
 
 	// Use this for initialization
 	void Start () {
