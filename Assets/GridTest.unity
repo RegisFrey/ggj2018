@@ -371,14 +371,14 @@ MonoBehaviour:
   codeWords:
   - DILARA
   noiseWords:
-  - REGIS
-  - CAT
+  - TOP SECRET
+  - IT'S BEEN FOUND THAT THE CIA IS ON US
+  - DEREK IS NOW OUR MOLE
+  - I REPEAT
   - DEREK
-  - PHILZ
-  - JOHNNY
-  - GOES
-  - TO
-  - THEATRE
+  - 'IS '
+  - 'OUR '
+  - MOLE
   - LARGE
   - LAST
   - RESORT
@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 2094282856}
   - component: {fileID: 2094282855}
   - component: {fileID: 2094282854}
+  - component: {fileID: 2094282858}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -624,6 +625,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2094282858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2094282853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1876a4384a99824eb9c5ac01e436e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusLabel: {fileID: 0}
 --- !u!224 &2102732332 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224769372578314122, guid: 20c1f97504a2242f286bbe76d236613b,
