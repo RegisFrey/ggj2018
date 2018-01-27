@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
   
-    public UIManger UIManager;
+    public UIManager UIManager;
 
     [Range(0, 1)]
     public float percentageCorruption = 1f;

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Editor;
+using UnityEditor;
 
 [CustomEditor(typeof(UIManager))]
 public class UIManagerInspector : Editor {
@@ -9,9 +9,9 @@ public class UIManagerInspector : Editor {
   {
     if (GUILayout.Button("Colorize UI"))
     {
-      if(target.GetType() == typeof(UseGetterSetter))
+      if(target.GetType() == typeof(UIManager))
       {
-        UIManger uiManager = (UIManger)target;
+        UIManager uiManager = (UIManager)target;
         uiManager.ColorizeUI();
       }
     }

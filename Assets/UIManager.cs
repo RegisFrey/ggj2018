@@ -1,50 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
   
   [SerializeField]
   private Style uiStyle;
-  public float UIStyle
+  public Style UIStyle
   {
     get { return uiStyle; }
     set 
     {
       uiStyle = value;
-      ColorizeUI(uiStyle);
+      ColorizeUI();
     }
   }
   [SerializeField]
   private List<Text> uiText;
   [SerializeField]
-  private List<Sprite> uiFg;
+  private List<Image> uiFg;
   [SerializeField]
-  private List<Sprite> uiBkg;
+  private List<Image> uiBkg;
 
   public void Awake()
   {
-      GameManager.Instance.UIManger = this;
+      GameManager.Instance.UIManager = this;
   }
   
   public void Start() 
   {
-    ColorizeUI(uiStyle);
+    ColorizeUI();
   }
   
-  public void ColorizeUI(Style s)
+  public void ColorizeUI()
   {
     foreach (Text t in uiText)
     {
-        t.color = s.fgColor;
+        t.color = uiStyle.fgColor;
     }
-    foreach (Sprite i in uiFg)
+    foreach (Image i in uiFg)
     {
-        i.color = s.fgColor;
+        i.color = uiStyle.fgColor;
     }
-    foreach (Sprite i in uiBkg)
+    foreach (Image i in uiBkg)
     {
-        i.color = s.bkgColor;
+        i.color = uiStyle.bkgColor;
     }
   }
 }
