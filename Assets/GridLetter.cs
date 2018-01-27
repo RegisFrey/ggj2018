@@ -12,11 +12,9 @@ public class GridLetter : MonoBehaviour {
 		letter.text = l.ToString();
 	}
 	
-	public void LetterColor(Color c) {
-		letter.color = c;
-	}
-	
-	public void BackingColor(Color c) {
-		backing.color = c;
+	public void LetterStyle(Style s) {
+		letter.color = s.fgColor;
+		backing.gameObject.SetActive(true); // could disable if style matches main bkg style
+		backing.color = s.bkgColor;
 	}
 }

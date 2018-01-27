@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a3e6848c0441949af446799018a2a, type: 3}
+  m_Name: OrangeSet
+  m_EditorClassIdentifier: 
+  primary: {fileID: 11400000, guid: 044df137abbac4de78e541be17287ab6, type: 2}
+  highlights:
+  - {fileID: 11400000, guid: 544699d362d194b07bce644ea58d8715, type: 2}

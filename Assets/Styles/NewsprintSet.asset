@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a3e6848c0441949af446799018a2a, type: 3}
+  m_Name: NewsprintSet
+  m_EditorClassIdentifier: 
+  primary: {fileID: 11400000, guid: f860852d574eb46e78b0c7bbda0d8925, type: 2}
+  highlights:
+  - {fileID: 11400000, guid: 95f250cccef654dfeb59cf3e65168c5f, type: 2}
+  - {fileID: 11400000, guid: 748493974d5db422a84b9655df17e08e, type: 2}

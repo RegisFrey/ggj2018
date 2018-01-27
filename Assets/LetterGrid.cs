@@ -13,8 +13,7 @@ public class LetterGrid : MonoBehaviour {
 	public int gridCols = 12;
 	public int gridRows = 6;
 	
-	public Color targetColor;
-	public Color defaultColor;
+	public StyleSet style;
 	
 	[Header("Character Sets")]
 	public string correctedAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
@@ -71,42 +70,40 @@ public class LetterGrid : MonoBehaviour {
 	
 	void CreatePlainText() {
 		int gridCharacters = GridCharacters();
-        int randIndex;
+    int randIndex;
 		while(plaintext.Length < gridCharacters) {
 			randIndex = Random.Range(0, noiseWords.Count);
 			plaintext = plaintext + ' ' + noiseWords[randIndex];
 		}
-        // corrupt plain text a bit
+    // corrupt plain text a bit
 
-        // add the code word
-        randIndex = Random.Range(0, plaintext.Length);
-        targetWord = codeWords[Random.Range(0,codeWords.Count)];
-        plaintext = plaintext.Substring(0, randIndex) + targetWord + plaintext.Substring(randIndex);
+    // add the code word
+    randIndex = Random.Range(0, plaintext.Length);
+    targetWord = codeWords[Random.Range(0,codeWords.Count)];
+    plaintext = plaintext.Substring(0, randIndex) + targetWord + plaintext.Substring(randIndex);
         
 	}
 	
 	GridLetter CreateGridLetter(Vector2 position) {
         GridLetter gl = Instantiate(gridLetterPrefab,Vector3.zero, Quaternion.identity) as GridLetter;
-		gl.gameObject.transform.SetParent(gameObject.transform, false);
+				gl.gameObject.transform.SetParent(gameObject.transform, false);
         gl.gameObject.transform.localPosition = new Vector3(position.x, position.y, 0);
-
         return gl;
 	}
 
-	
 	// corruption 0-1, 
 	void RenderGridLetter(GridLetter gl, System.Char letter, float corruption, bool target) {
 		// UN-corruption % chance to get colorized
 		if(target && Random.value > (1 - corruption) ) {
-			gl.LetterColor(targetColor);
+			gl.LetterStyle(style.highlights[0]);
 		}
 		// 3% chance a non-target gets colorized
 		else if(Random.value > 0.97) {
-			gl.LetterColor(targetColor);
+			gl.LetterStyle(style.highlights[0]);
 		}
 		else
 		{
-			gl.LetterColor(defaultColor);
+			gl.LetterStyle(style.primary);
 		}
 		// corruption % chance will randomly replace with symbol
 		if(Random.value > corruption) {
