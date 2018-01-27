@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1a0fbce11504c3e9c94fc0d7c1e2d3, type: 3}
+  m_Name: AssetMap
+  m_EditorClassIdentifier: 
+  glitches:
+  - {fileID: 21300000, guid: 3c17e713c1aa844c5bbe85611eb0a9ee, type: 3}
+  - {fileID: 21300000, guid: 79b358d865025494489df71625bb7a37, type: 3}
+  - {fileID: 21300000, guid: 42486a74dd19145f68827c04b44bfa78, type: 3}
+  - {fileID: 21300000, guid: 54cb9d7b7604042639f7734b2468942f, type: 3}
+  - {fileID: 21300000, guid: 9bafb382ad16345c1bac1a2e6bb39dfa, type: 3}
