@@ -13,6 +13,8 @@ public class UIManagerInspector : Editor {
       {
         UIManager uiManager = (UIManager)target;
         uiManager.ColorizeUI();
+        EditorUtility.SetDirty (target);
+        //SceneView.RepaintAll();
       }
     }
     // draw normal controls
