@@ -295,11 +295,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19b513c3837c5044ad416d499c7ee01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fullDistortionEffect: 1
 --- !u!170 &170870453602865752
 AudioDistortionFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869278722896068}
-  m_Enabled: 0
-  m_DistortionLevel: 0.5
+  m_Enabled: 1
+  m_DistortionLevel: 0

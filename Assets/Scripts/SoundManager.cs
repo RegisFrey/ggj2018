@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
+    [Header("Testing Distortion Values")]
+    [Range(0, 1)]
+    public float fullDistortionEffect;
+
     private AudioSource[] audioSources;
     private AudioDistortionFilter distortionFilter;
 
@@ -37,9 +41,8 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    public void SetDistortion(float distortionLevel)
+    public void MakeDistortion(bool shouldDistort)
     {
-        distortionFilter.distortionLevel = distortionLevel;
-
+        distortionFilter.distortionLevel = shouldDistort ? fullDistortionEffect : 0;
     }
 }

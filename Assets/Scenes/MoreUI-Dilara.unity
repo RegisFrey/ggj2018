@@ -439,6 +439,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 170870453602865752, guid: b8e4de57491d00742aad754d079d4263,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114169893969502762, guid: b8e4de57491d00742aad754d079d4263,
+        type: 2}
+      propertyPath: fullDistortionEffect
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8e4de57491d00742aad754d079d4263, type: 2}
   m_IsPrefabParent: 0
