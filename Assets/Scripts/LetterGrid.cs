@@ -52,6 +52,7 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 
     void NewLevelLoaded()
     {
+        Debug.Log("NEW LEVEL LOADED");
         codeWords = LoadLevelManager.Instance.GetCurrentLevel().cluewotds;
         noiseWords = LoadLevelManager.Instance.GetCurrentLevel().fakewotds;
 
@@ -126,7 +127,10 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 		int gridCharacters = GridCharacters();
     	int randIndex;
         plaintext = "";
-		while(plaintext.Length < gridCharacters) {
+        targetWords.Clear();
+        targetWordIndices.Clear();
+
+        while (plaintext.Length < gridCharacters) {
 			randIndex = Random.Range(0, noiseWords.Count);
 			plaintext = plaintext + ' ' + noiseWords[randIndex];
 		}

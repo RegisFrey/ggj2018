@@ -37,23 +37,6 @@ using UnityEngine;
 
 }
 
-/*
- * corruption 1 --> default
- * corruption 0 --> target
- *
- * vol = default = m*corruption + c --> default = m + c
- * vol = target = c --> default = m + target --> m = default - target
- * vol = (default-target)*corruption + target
- *
- * 
- * 
- * 
- * 
- * 
- * 
- * */
-
-
 public class SoundManager : MonoBehaviour {
 
     [Header("Testing Distortion Values")]
@@ -63,6 +46,7 @@ public class SoundManager : MonoBehaviour {
     public AudioDistortionClass baseBeat;
     public AudioDistortionClass wupDownUp;
     public AudioDistortionClass shimmer;
+    public AudioDistortionClass noise;
 
     private AudioSource[] audioSources;
     private AudioDistortionFilter distortionFilter;
@@ -94,6 +78,7 @@ public class SoundManager : MonoBehaviour {
         baseBeat.UpdateValuesWithCorruption(corruption);
         wupDownUp.UpdateValuesWithCorruption(corruption);
         shimmer.UpdateValuesWithCorruption(corruption);
+        noise.UpdateValuesWithCorruption(corruption);
     }
 
     public void SetPitch(float pitch)

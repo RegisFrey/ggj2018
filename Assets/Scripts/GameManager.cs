@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour {
 
     public void LevelCompleted(EndResult result)
     {
+        Debug.Log("Level completed: " + result);
         if (result == EndResult.TIME_UP)
         {
             // GameOver();
