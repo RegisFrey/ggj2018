@@ -152,11 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e04cd64be73f4bae9e09b85e26b5b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionPrefab: {fileID: 114798832245411000, guid: 1e42d3bfd101745378d2ced535129ce4,
+  selectionPrefab: {fileID: 114671809250429564, guid: 1e42d3bfd101745378d2ced535129ce4,
     type: 2}
   images:
   - {fileID: 114607729680532706}
   - {fileID: 114978379743999148}
+  - {fileID: 114512873266979636, guid: 1e42d3bfd101745378d2ced535129ce4, type: 2}
   visibleSelections: 5
   baseSize: 200
   sizeFalloff: 60

@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour {
     void NewLevelLoaded()
     {
         levelTimeRemaining = LoadLevelManager.Instance.GetCurrentLevel().seconds;
+        UIManager.ColorizeUI(LoadLevelManager.Instance.GetCurrentLevel().style);
 
         // Set random targets for vibration
         targetLeftTrigger = Random.Range(0f, 1f);
@@ -63,11 +64,11 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Level completed: " + result);
         if (result == EndResult.TIME_UP)
         {
-            // GameOver();
+            GameOver();
         }
         else if (result == EndResult.FAILURE)
         {
-            // GameOver();
+            GameOver();
         }
         else
         {

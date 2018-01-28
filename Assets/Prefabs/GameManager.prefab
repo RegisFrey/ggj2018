@@ -83,8 +83,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d38b02d5d6057438da620f6741f7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIManager: {fileID: 0}
+  UIManager: {fileID: 114888685793655096}
   timer: {fileID: 0}
+  failStyle: {fileID: 11400000, guid: 8184032c2b11b406a8913531ee75154e, type: 2}
   secondsPerLevel: 60
   percentageCorruption: 1
   percentageCorruptionLeft: 0
@@ -118,7 +119,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   uiFg:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   uiBkg: []
