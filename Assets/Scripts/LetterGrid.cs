@@ -15,6 +15,12 @@ public class LetterGrid : MonoBehaviour {
 	
 	public StyleSet style;
 	
+	[Header("Design Vars")]
+	[Range(0, 1)]
+	public float percentFalsePositives = 0.005f;
+	[Range(0, 1)]
+	public float percentThresholdGlitch = 0.7f;
+	
 	[Header("Character Sets")]
 	public string correctedAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
 	//public String corruptedAlpha = "αß¢Đëƒ*ʜ!յ<|3n0ρ@Ի$7μѵM%{}"; 
@@ -26,6 +32,7 @@ public class LetterGrid : MonoBehaviour {
 	public List<string> noiseWords;
 	
 	[Header("Runtime")]
+	[Range(0, 100)]
 	public int offset;
 	public string targetWord;
 	public int targetWordStart;
@@ -60,13 +67,20 @@ public class LetterGrid : MonoBehaviour {
 		StartCoroutine("UpdateLetters", 1f);
 	}
 	
+	public static int WrapIndex(int index, int length)
+  {
+    return ((index % length) + length) % length;
+  }
+	
 	IEnumerator UpdateLetters(float numSecs)
 	{
 		while(true){
 			for(int i = 0; i < grid.Count; i++)
 			{
+				int indexInPlaintext = WrapIndex(i + offset, plaintext.Length);
+				bool target = (targetWordStart <= indexInPlaintext && indexInPlaintext < (targetWordStart + targetWord.Length) );
 				// wrap i + offset
-				RenderGridLetter(grid[i], plaintext[i + offset], GameManager.Instance.PercentageCorruption, false);
+				RenderGridLetter(grid[i], plaintext[WrapIndex(i + offset, plaintext.Length)], GameManager.Instance.PercentageCorruption, target);
 			}
             bkgImageColor.a = 1f - GameManager.Instance.PercentageCorruption;
             bkgImage.color = bkgImageColor;
@@ -88,9 +102,9 @@ public class LetterGrid : MonoBehaviour {
     // corrupt plain text a bit
 
     // add the code word
-    randIndex = Random.Range(0, plaintext.Length);
+    targetWordStart = Random.Range(0, plaintext.Length);
     targetWord = codeWords[Random.Range(0,codeWords.Count)];
-    plaintext = plaintext.Substring(0, randIndex) + targetWord + plaintext.Substring(randIndex);
+    plaintext = plaintext.Substring(0, targetWordStart) + targetWord + plaintext.Substring(targetWordStart);
         
 	}
 	
@@ -103,27 +117,35 @@ public class LetterGrid : MonoBehaviour {
 
 	// corruption 0-1, 
 	void RenderGridLetter(GridLetter gl, System.Char letter, float corruption, bool target) {
-		// UN-corruption % chance to get colorized
-		if(target && Random.value > (1 - corruption) ) {
-			gl.LetterStyle(style.highlights[0]);
+		// UN-corruption % chance to get properly colorized
+		if(target && Random.value > corruption ) {
+			gl.LetterStyle(style.highlights[0]); // TODO: pick a SPECIFIC highlight for codeword
 		}
-		// 3% chance a non-target gets colorized
-		else if(Random.value > 0.97) {
-			gl.LetterStyle(style.highlights[0]);
+		// % chance a non-target gets colorized
+		else if(Random.value > (1-percentFalsePositives)) {
+			gl.LetterStyle(style.highlights[0]); // TODO: random highlights for false positives
 		}
 		else
 		{
 			gl.LetterStyle(style.primary);
 		}
 		// corruption % chance will randomly replace with symbol
-		if(Random.value > corruption) {
+		float clarity = Random.value;
+		if(clarity > corruption) {
+			gl.Unglitch();
 			gl.SetLetter(letter);
 		}
-		else
-		{
+		// corruption is low enough to show symbol
+		else if (clarity < percentThresholdGlitch) {
+			gl.Unglitch();
 			gl.SetLetter(
 				corruptedSymbol[Random.Range(0, corruptedSymbol.Length)]
 			);
+		}
+		// glitch
+		else
+		{
+			gl.Glitch();
 		}
 	}
 }
