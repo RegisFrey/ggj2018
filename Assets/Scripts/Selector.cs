@@ -125,8 +125,8 @@ public class Selector : MonoBehaviour {
         Debug.Log("Selection made!!!");
         // Check whether the choice is correct or not
 
+        GameManager.Instance.LevelCompleted(EndResult.SUCCESS);
 
-        LoadLevelManager.Instance.LoadNextLevel();
     }
 
     void CycleLeft () {

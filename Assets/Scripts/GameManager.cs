@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum EndResult
+{
+    SUCCESS,
+    FAILURE,
+    TIME_UP,
+};
+
 public class GameManager : MonoBehaviour {
   
     // Singleton references
@@ -49,6 +56,22 @@ public class GameManager : MonoBehaviour {
         targetRightTrigger = Random.Range(0f, 1f);
     }
 
+    public void LevelCompleted(EndResult result)
+    {
+        if (result == EndResult.TIME_UP)
+        {
+            // GameOver();
+        }
+        else if (result == EndResult.FAILURE)
+        {
+            // GameOver();
+        }
+        else
+        {
+            LoadLevelManager.Instance.LoadNextLevel();
+        }
+    }
+
     public float TargetLeftTrigger { get { return targetLeftTrigger; } }
     public float TargetRightTrigger { get { return targetRightTrigger; } }
 
@@ -76,7 +99,8 @@ public class GameManager : MonoBehaviour {
        }
        if ( levelTimeRemaining < 0 )
        {
-           // GameOver();
+            timer.text = "00.000";
+            LevelCompleted(EndResult.TIME_UP);
        }
     }
 
