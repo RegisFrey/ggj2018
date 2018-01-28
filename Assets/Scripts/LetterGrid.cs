@@ -34,8 +34,8 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 	[Header("Runtime")]
 	[Range(0, 100)]
 	public int offset;
-	public string targetWord;
-	public int targetWordStart;
+	public List<string> targetWords;
+	public List<int> targetWordIndices;
 	public string plaintext;
 	public string ciphertext;
 	public List<GridLetter> grid;
@@ -93,16 +93,18 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 		return ((index % length) + length) % length;
 	}
 	
+	public void RenderLetterGrid() {
+		for(int i = 0; i < grid.Count; i++)
+		{
+			int indexInPlaintext = WrapIndex(i + offset, plaintext.Length);
+			RenderGridLetter(grid[i], plaintext[indexInPlaintext], GameManager.Instance.PercentageCorruption, IsInTargetRange(indexInPlaintext) );
+		}
+	}
+	
 	IEnumerator UpdateLetters(float numSecs)
 	{
 		while(true){
-			for(int i = 0; i < grid.Count; i++)
-			{
-				int indexInPlaintext = WrapIndex(i + offset, plaintext.Length);
-				bool target = (targetWordStart <= indexInPlaintext && indexInPlaintext < (targetWordStart + targetWord.Length) );
-				// wrap i + offset
-				RenderGridLetter(grid[i], plaintext[WrapIndex(i + offset, plaintext.Length)], GameManager.Instance.PercentageCorruption, target);
-			}
+			RenderLetterGrid();
             yield return new WaitForSeconds(numSecs);
 		}	
 	}
@@ -110,6 +112,15 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 	int GridCharacters() {
 		return gridCols * gridRows;
 	}
+	
+	bool IsInTargetRange(int index) {
+		for(int i = 0; i < targetWords.Count; i++)
+		{
+			if(targetWordIndices[i] <= index && index < (targetWordIndices[i] + targetWords[i].Length) )
+				return true;
+		}
+		return false;
+	} 
 	
 	void CreatePlainText() {
 		int gridCharacters = GridCharacters();
@@ -119,13 +130,25 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 			randIndex = Random.Range(0, noiseWords.Count);
 			plaintext = plaintext + ' ' + noiseWords[randIndex];
 		}
-    // corrupt plain text a bit
-
-    // add the code word
-    targetWordStart = Random.Range(0, plaintext.Length);
-    targetWord = codeWords[Random.Range(0,codeWords.Count)];
-    plaintext = plaintext.Substring(0, targetWordStart) + targetWord + plaintext.Substring(targetWordStart);
-        
+	    // add the code words
+		for(int i = 0; i < codeWords.Count; i++)
+		{
+			// Try and pick an index that doesn't overlap with other codewords
+			int attemptIndex;
+			do
+			{
+				attemptIndex = Random.Range(0, plaintext.Length);
+			} 
+			while ( IsInTargetRange(attemptIndex) );
+			// Found an index!
+			targetWords.Add(codeWords[i]);
+			targetWordIndices.Add( attemptIndex );
+			// Insert to plaintext
+			//plaintext = plaintext.Substring(0, targetWordIndices[i]) + targetWords[i] + plaintext.Substring(targetWordIndices[i]);
+			//plaintext = plaintext.Insert(targetWordIndices[i], targetWord[i].Length, targetWords[i]);
+			// overwrite characters
+			plaintext = plaintext.Substring(0, targetWordIndices[i]) + targetWords[i] + plaintext.Substring(targetWordIndices[i] + targetWords[i].Length);
+		}
 	}
 	
 	GridLetter CreateGridLetter(Vector2 position) {
