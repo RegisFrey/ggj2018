@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour {
     {
         i.color = uiStyle.bkgColor;
     }
-    foreach (UIColorizable c in uiColorizable)
+    foreach (IColorizable c in uiColorizable)
     {
         c.Colorize(uiStyle);
     }
