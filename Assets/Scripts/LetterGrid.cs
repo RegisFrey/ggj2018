@@ -52,6 +52,7 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 
     void NewLevelLoaded()
     {
+        Debug.Log("NEW LEVEL LOADED");
         codeWords = LoadLevelManager.Instance.GetCurrentLevel().cluewotds;
         noiseWords = LoadLevelManager.Instance.GetCurrentLevel().fakewotds;
 
