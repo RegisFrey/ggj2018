@@ -11,7 +11,10 @@ public class TriggerInputUIIndicator : MonoBehaviour {
 
 	void Update () {
         fillerImage.fillAmount = isLeftTrigger ? InputManager.Instance.LeftTrigger : InputManager.Instance.RightTrigger;
-        foundSSImage.enabled = GameManager.Instance.GetPercentageCorruption(isLeftTrigger) <= 0.05f;
+        if (foundSSImage != null)
+        {
+            foundSSImage.enabled = GameManager.Instance.GetPercentageCorruption(isLeftTrigger) <= 0.05f;
+        }
 
     }
 }
