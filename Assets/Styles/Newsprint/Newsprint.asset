@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fgColor: {r: 0.1254902, g: 0.12156863, b: 0.12156863, a: 1}
   bkgColor: {r: 0.827451, g: 0.827451, b: 0.827451, a: 1}
+  fgPopColor: {r: 0.7352941, g: 0.032439433, b: 0.032439433, a: 1}

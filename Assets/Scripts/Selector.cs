@@ -15,9 +15,11 @@ public class Selection {
     }
 }
 
-public class Selector : MonoBehaviour {
+public class Selector : MonoBehaviour, IColorizable {
 
 	public Image selectionPrefab;
+	public List<Image> images;
+	[Space(10)]
 	public List<Selection> selections;
 	[Tooltip("Must be odd for selection to be correctly indicted")]
 	public int visibleSelections = 5;
@@ -45,6 +47,32 @@ public class Selector : MonoBehaviour {
         EventsManager.StopListening("ScrollingLeft", CycleLeft);
         EventsManager.StopListening("NewLevelLoaded", NewLevelLoaded);
     }
+	
+	public void Colorize(StyleSet s) {
+		// colorize component images
+		for (int i = 0; i < images.Count; i++)
+        {
+			images[i].color = s.primary.fgColor;
+		}
+		
+		// color selectable objects
+		for (int i = 0; i < selectionObjects.Count; i++)
+        {
+			selectionObjects[i].color = s.primary.fgPopColor;
+		}
+	}
+	public void Colorize(Style s) {
+		// colorize component images
+		for (int i = 0; i < images.Count; i++)
+        {
+			images[i].color = s.fgColor;
+		}
+		// color selectable objects
+		for (int i = 0; i < selectionObjects.Count; i++)
+        {
+			selectionObjects[i].color = s.fgPopColor;
+		}
+	}
 
 
     void Render() {
