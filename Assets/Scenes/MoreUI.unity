@@ -633,7 +633,7 @@ MonoBehaviour:
   gridCols: 35
   gridRows: 21
   style: {fileID: 11400000, guid: 89a2ac8b65cb341f9bb4e0065a672caf, type: 2}
-  percentFalsePositives: 0.01
+  percentFalsePositives: 0.005
   percentThresholdGlitch: 0.7
   correctedAlpha: ABCDEFGHIJKLMNOPQRSTUVWXYZ
   corruptedSymbol: '!@#$%^&*()?1234567890~.,<>{}[]\|/'
