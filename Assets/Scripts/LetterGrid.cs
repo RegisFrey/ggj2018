@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
 
-public class LetterGrid : MonoBehaviour {
+public class LetterGrid : MonoBehaviour, IColorizable {
 	
 	public GridLetter gridLetterPrefab;
 	public int gridWidth = 32;
@@ -62,6 +62,11 @@ public class LetterGrid : MonoBehaviour {
 				    );
         }
 		StartCoroutine("UpdateLetters", 1f);
+	}
+	
+	public void Colorize(Style s)//StyleSet s)
+	{
+		//this.style = s;
 	}
 	
 	public static int WrapIndex(int index, int length)

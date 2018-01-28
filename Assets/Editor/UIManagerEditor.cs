@@ -12,6 +12,7 @@ public class UIManagerInspector : Editor {
       if(target.GetType() == typeof(UIManager))
       {
         UIManager uiManager = (UIManager)target;
+        uiManager.GatherColorizable();
         uiManager.ColorizeUI();
         EditorUtility.SetDirty (target);
         //SceneView.RepaintAll();

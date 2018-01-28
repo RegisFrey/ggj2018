@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
   
+  public Camera mainCamera;
+  
   [SerializeField]
   private Style uiStyle;
   public Style UIStyle
@@ -22,8 +24,8 @@ public class UIManager : MonoBehaviour {
   private List<Image> uiFg;
   [SerializeField]
   private List<Image> uiBkg;
-  [SerializeField]
-  private List<UIColorizable> uiColorizable;
+  [SerializeField] // can't due to Interface
+  private IList<IColorizable> uiColorizable;
 
   public void Awake()
   {
@@ -32,11 +34,18 @@ public class UIManager : MonoBehaviour {
   
   public void Start() 
   {
-    ColorizeUI();
+      GatherColorizable();
+      ColorizeUI();
+  }
+  
+  public void GatherColorizable()
+  {
+      uiColorizable = InterfaceHelper.FindObjects<IColorizable>();
   }
   
   public void ColorizeUI()
   {
+    mainCamera.backgroundColor = uiStyle.bkgColor;
     foreach (Text t in uiText)
     {
         t.color = uiStyle.fgColor;

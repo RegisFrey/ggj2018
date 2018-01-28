@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIColorizable : MonoBehaviour {
+public class UIColorizable : MonoBehaviour, IColorizable {
   
   [SerializeField]
   private List<Text> uiText;
