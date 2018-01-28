@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724cfb7949ceb40208883d261c11a2ba, type: 3}
   m_Name: pi_clawMachine
   m_EditorClassIdentifier: 
-  name: 
+  name: PI Claw Machine
   symbol: {fileID: 0}
   notes: 
