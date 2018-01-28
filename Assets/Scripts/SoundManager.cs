@@ -41,6 +41,16 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    public void SetVolume(float volume)
+    {
+        //TODO: fill this
+    }
+
+    public void SetStereoPan(float pan)
+    {
+        //TODO: fill this
+    }
+
     public void MakeDistortion(bool shouldDistort)
     {
         distortionFilter.distortionLevel = shouldDistort ? fullDistortionEffect : 0;
