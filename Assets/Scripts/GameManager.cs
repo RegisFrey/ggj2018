@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour {
     public float cycleUISeconds = 2.0f;
     private int currentCycleOfUIColor;
     public StyleSet cycleUIColorScrapSet;
-    IEnumerator CycleUIColors(){
+    public IEnumerator CycleUIColors(){
         currentCycleOfUIColor = 0;
         while(true) {
             currentCycleOfUIColor++;

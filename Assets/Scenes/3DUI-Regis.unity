@@ -2346,6 +2346,23 @@ Prefab:
       propertyPath: uiFg.Array.data[0]
       value: 
       objectReference: {fileID: 1372209217}
+    - target: {fileID: 114161978565456020, guid: faefd17bc082b14478632e8b1fe42af2,
+        type: 2}
+      propertyPath: cycleUIColorScrapSet
+      value: 
+      objectReference: {fileID: 11400000, guid: f57840f7577c641e1b61e75da4d626ac,
+        type: 2}
+    - target: {fileID: 114161978565456020, guid: faefd17bc082b14478632e8b1fe42af2,
+        type: 2}
+      propertyPath: cycleUIColorSet
+      value: 
+      objectReference: {fileID: 11400000, guid: f8fbfb11773d54ede97874a4ab93a0ca,
+        type: 2}
+    - target: {fileID: 114161978565456020, guid: faefd17bc082b14478632e8b1fe42af2,
+        type: 2}
+      propertyPath: cycleUISeconds
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faefd17bc082b14478632e8b1fe42af2, type: 2}
   m_IsPrefabParent: 0

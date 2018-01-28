@@ -10,6 +10,10 @@ public class TitleScreenManager : MonoBehaviour {
     {
         titleScreen.SetActive(true);
     }
+    void Start()
+    {
+        StartCoroutine(GameManager.Instance.CycleUIColors());
+    }
 
     void OnEnable()
     {
@@ -24,6 +28,7 @@ public class TitleScreenManager : MonoBehaviour {
     void HideTitle()
     {
         titleScreen.SetActive(false);
+        StopCoroutine(GameManager.Instance.CycleUIColors());
         LoadLevelManager.Instance.LoadLevel();
         SoundManager.Instance.StartGameMusic();
     }
