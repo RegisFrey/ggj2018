@@ -81,12 +81,17 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 	public void Colorize(Style s)//StyleSet s)
 	{
 		//this.style = s;
+		// can't with just style
+	}
+	public void Colorize(StyleSet s)
+	{
+		this.style = s;
 	}
 	
 	public static int WrapIndex(int index, int length)
-  {
-    return ((index % length) + length) % length;
-  }
+	{
+		return ((index % length) + length) % length;
+	}
 	
 	IEnumerator UpdateLetters(float numSecs)
 	{

@@ -12,6 +12,11 @@ public class UIColorizable : MonoBehaviour, IColorizable {
   [SerializeField]
   private List<Image> uiBkg;
   
+  public void Colorize(StyleSet styles)
+  {
+      Colorize(styles.primary);
+  }
+  
   public void Colorize(Style uiStyle)
   {
     foreach (Text t in uiText)
