@@ -62,11 +62,11 @@ public class InputManager : MonoBehaviour {
 
         float vel_x = (state.ThumbSticks.Left.X - prevState.ThumbSticks.Left.X)/ Time.deltaTime;
         string eventName = "";
-        if(vel_x < 0 && state.ThumbSticks.Left.X < -0.5f)
+        if(vel_x < 0 && state.ThumbSticks.Left.X < -0.8f)
         {
             eventName = "ScrollingLeft";
         }
-        else if(vel_x > 0 && state.ThumbSticks.Left.X > 0.5f )
+        else if(vel_x > 0 && state.ThumbSticks.Left.X > 0.8f )
         {
             eventName = "ScrollingRight";
         }
