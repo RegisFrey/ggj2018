@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using XInputDotNetPure; // Required in C#
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour {
 
@@ -52,7 +53,17 @@ public class InputManager : MonoBehaviour {
         prevState = state;
         state = GamePad.GetState(playerIndex);
 
-        // Detect if a button was pressed this frame
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene.name == "IntroScene")
+        {
+            // Use button A to advance to GameScene
+            if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
+            {
+                SceneManager.LoadScene("GameScene");
+            }
+        }
+
+        // Detect if button A was pressed this frame
         if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
         {
             EventsManager.TriggerEvent("SelectionButtonPressed");

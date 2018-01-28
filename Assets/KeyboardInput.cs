@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KeyboardInput : MonoBehaviour {
 
@@ -9,7 +10,15 @@ public class KeyboardInput : MonoBehaviour {
         // Keyboard events
         if (Input.GetKeyUp(KeyCode.A))
         {
-            EventsManager.TriggerEvent("SelectionButtonPressed");
+            Scene scene = SceneManager.GetActiveScene();
+            if (scene.name == "IntroScene")
+            {
+                SceneManager.LoadScene("GameScene");
+            }
+            else
+            {
+                EventsManager.TriggerEvent("SelectionButtonPressed");
+            }
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
