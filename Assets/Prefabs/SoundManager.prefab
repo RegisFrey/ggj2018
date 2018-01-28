@@ -296,6 +296,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullDistortionEffect: 1
+  baseBeat:
+    src: {fileID: 82978684785231152}
+    defaultVolume: 0
+    targetVolume: 1
+    defaultPitch: 1
+    targetPitch: 1
+    defaultPan: 0
+    targetPan: 0
+  wupDownUp:
+    src: {fileID: 82071403161689328}
+    defaultVolume: 0.75
+    targetVolume: 1
+    defaultPitch: 1
+    targetPitch: 1
+    defaultPan: 1
+    targetPan: 0
+  shimmer:
+    src: {fileID: 82442074892916328}
+    defaultVolume: 0.75
+    targetVolume: 1
+    defaultPitch: 1
+    targetPitch: 1
+    defaultPan: -1
+    targetPan: 0
 --- !u!170 &170870453602865752
 AudioDistortionFilter:
   m_ObjectHideFlags: 1

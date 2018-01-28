@@ -1204,6 +1204,8 @@ MonoBehaviour:
   secondsPerLevel: 60
   levelTimeRemaining: 60
   percentageCorruption: 0.09
+  percentageCorruptionLeft: 0
+  percentageCorruptionRight: 0
 --- !u!4 &1399106765
 Transform:
   m_ObjectHideFlags: 0

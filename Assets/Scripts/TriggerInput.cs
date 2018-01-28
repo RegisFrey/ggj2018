@@ -27,7 +27,8 @@ public class TriggerInput : MonoBehaviour {
         InputManager.Instance.VibrateController(vibrationLeft, vibratioRight);
 
         GameManager.Instance.SetPercentageCorruptions(1f - vibrationLeft, 1f - vibratioRight);
-        SoundManager.Instance.SetPitch(1+(InputManager.Instance.LeftTrigger - targetLeft));
-        SoundManager.Instance.MakeDistortion(GameManager.Instance.percentageCorruption == 1f);
+        SoundManager.Instance.SetAudioCorruption(GameManager.Instance.percentageCorruption);
+       // SoundManager.Instance.SetPitch(1+(InputManager.Instance.LeftTrigger - targetLeft));
+       // SoundManager.Instance.MakeDistortion(GameManager.Instance.percentageCorruption == 1f);
     }   
 }
