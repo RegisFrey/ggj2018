@@ -38,9 +38,7 @@ public class TriggerInput : MonoBehaviour {
         }
 
         GameManager.Instance.SetPercentageCorruptions(1f - vibrationLeft, 1f - vibratioRight);
-        SoundManager.Instance.SetPitch(1+(InputManager.Instance.LeftTrigger - targetLeft)*1.5f);
-
-        Debug.Log("Vib: "+ vibrationLeft + " " + vibratioRight);
-
+        SoundManager.Instance.SetPitch(1+(InputManager.Instance.LeftTrigger - targetLeft));
+        SoundManager.Instance.MakeDistortion(GameManager.Instance.percentageCorruption == 1f);
     }   
 }
