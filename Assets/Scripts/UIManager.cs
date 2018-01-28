@@ -22,10 +22,12 @@ public class UIManager : MonoBehaviour {
   private List<Image> uiFg;
   [SerializeField]
   private List<Image> uiBkg;
+  [SerializeField]
+  private List<UIColorizable> uiColorizable;
 
   public void Awake()
   {
-      GameManager.Instance.UIManager = this;
+    GameManager.Instance.UIManager = this;
   }
   
   public void Start() 
@@ -46,6 +48,10 @@ public class UIManager : MonoBehaviour {
     foreach (Image i in uiBkg)
     {
         i.color = uiStyle.bkgColor;
+    }
+    foreach (UIColorizable c in uiColorizable)
+    {
+        c.Colorize(uiStyle);
     }
   }
 }
