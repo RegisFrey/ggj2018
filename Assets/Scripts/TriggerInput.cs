@@ -12,7 +12,7 @@ public class TriggerInput : MonoBehaviour {
     float targetLeft;
     float targetRight;
 
-    float correctnessThreshold = 0.90f;
+    float correctnessThreshold = 0.95f;
 
     void Start () {
         // Set random targets for vibration
@@ -25,17 +25,6 @@ public class TriggerInput : MonoBehaviour {
         float vibrationLeft = (InputManager.Instance.LeftTrigger < targetLeft) ? (1f/targetLeft) * InputManager.Instance.LeftTrigger : (InputManager.Instance.LeftTrigger - 1f)/(targetLeft-1f);
         float vibratioRight = (InputManager.Instance.RightTrigger < targetRight) ? (1f / targetRight) * InputManager.Instance.RightTrigger : (InputManager.Instance.RightTrigger - 1f) / (targetRight - 1f);
         InputManager.Instance.VibrateController(vibrationLeft, vibratioRight);
-
-        if (statusLabel != null) {
-            if (vibrationLeft > correctnessThreshold && vibratioRight > correctnessThreshold)
-            {
-                statusLabel.text = "SWEET!";
-            }
-            else
-            {
-                statusLabel.text = "KEEP ADJUSTING";
-            }
-        }
 
         GameManager.Instance.SetPercentageCorruptions(1f - vibrationLeft, 1f - vibratioRight);
         SoundManager.Instance.SetPitch(1+(InputManager.Instance.LeftTrigger - targetLeft));

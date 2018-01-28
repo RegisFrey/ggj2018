@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour {
     
     [Range(0, 1)]
     public float percentageCorruption = 1f;
-    private float percentageCorruptionFirst;
-    private float percentageCorruptionSecond;
+    public float percentageCorruptionLeft;
+    public float percentageCorruptionRight;
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -56,18 +56,23 @@ public class GameManager : MonoBehaviour {
        }
     }
 
-    public void SetPercentageCorruptions(float first, float second)
+    public void SetPercentageCorruptions(float left, float right)
     {
-        percentageCorruptionFirst = first;
-        percentageCorruptionSecond = second;
+        percentageCorruptionLeft = left;
+        percentageCorruptionRight = right;
 
         // Integration for now:
-        percentageCorruption = (percentageCorruptionFirst + percentageCorruptionSecond) / 2f;
+        percentageCorruption = (percentageCorruptionLeft + percentageCorruptionRight) / 2f;
     }
     
     public float PercentageCorruption
     {
         get { return percentageCorruption; }
         set { percentageCorruption = value; }
+    }
+
+    public float GetPercentageCorruption(bool isLeft)
+    {
+        return isLeft ? percentageCorruptionLeft : percentageCorruptionRight;
     }
 }
