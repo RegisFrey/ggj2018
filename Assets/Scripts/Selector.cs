@@ -21,8 +21,22 @@ public class Selector : MonoBehaviour {
 	private int focusedIndex = 2; // start in middle
 	private int visibleRange = 2;
 
-	// Use this for initialization
-	void Start () {
+    void OnEnable()
+    {
+        EventsManager.StartListening("SelectionButtonPressed", SelectionMade);
+        EventsManager.StartListening("ScrollingRight", CycleRight);
+        EventsManager.StartListening("ScrollingLeft", CycleLeft);
+    }
+
+    void OnDisable()
+    {
+        EventsManager.StopListening("SelectionButtonPressed", SelectionMade);
+        EventsManager.StopListening("ScrollingRight", CycleRight);
+        EventsManager.StopListening("ScrollingLeft", CycleLeft);
+    }
+
+    // Use this for initialization
+    void Start () {
 		visibleRange = focusedIndex = (int)Mathf.Floor(visibleSelections / 2);
 		
 		for(int i = 0; i < selections.Count; i++)
@@ -35,8 +49,8 @@ public class Selector : MonoBehaviour {
 		
 		Render();
 	}
-	
-	void Render() {
+
+    void Render() {
 		for(int i = 0; i < selectionObjects.Count; i++)
         {			
 			// Disable selections out of Range
@@ -65,18 +79,24 @@ public class Selector : MonoBehaviour {
 				selectionObjects[i].rectTransform.sizeDelta = size;
 				//}
 			}
-        }
-		
-		
+        }		
 	}
-	
-	void CycleLeft () {
-		focusedIndex--;
+
+    void SelectionMade()
+    {
+        Debug.Log("Selection made!!!");
+        // Check whether the choice is correct or not
+    }
+
+    void CycleLeft () {
+        Debug.Log("Cycle left");
+        focusedIndex--;
 		Render();
 	}
 	
 	void CycleRight () {
-		focusedIndex++;
+        Debug.Log("Cycle right");
+        focusedIndex++;
 		Render();
 	}
 }

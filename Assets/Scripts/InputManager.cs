@@ -51,6 +51,30 @@ public class InputManager : MonoBehaviour {
 
         prevState = state;
         state = GamePad.GetState(playerIndex);
+
+        // Detect if a button was pressed this frame
+        if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
+        {
+            EventsManager.TriggerEvent("SelectionButtonPressed");
+        }
+
+        // Detect joystick movement
+
+        float vel_x = (state.ThumbSticks.Left.X - prevState.ThumbSticks.Left.X)/ Time.deltaTime;
+        string eventName = "";
+        if(vel_x < 0 && state.ThumbSticks.Left.X < -0.5f)
+        {
+            eventName = "ScrollingLeft";
+        }
+        else if(vel_x > 0 && state.ThumbSticks.Left.X > 0.5f )
+        {
+            eventName = "ScrollingRight";
+        }
+        if (eventName.Length > 0 && Mathf.Abs(vel_x) > 8f)
+        {
+            EventsManager.TriggerEvent(eventName);
+        }
+
     }
 
     public void VibrateController(float vibrationLeft, float vibratioRight)
