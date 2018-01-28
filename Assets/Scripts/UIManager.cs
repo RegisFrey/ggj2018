@@ -66,6 +66,10 @@ public class UIManager : MonoBehaviour {
   public void ColorizeUI()
   {
     //uiStyle = uiStyleSet.primary;
+    if(uiColorizable == null)
+    {
+        GatherColorizable();
+    }
     
     mainCamera.backgroundColor = uiStyleSet.primary.bkgColor;
     
