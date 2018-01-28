@@ -6,10 +6,12 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Selection {
 	public Sprite symbol;
+    private bool isCorrect;
 
-    public Selection(Sprite symbol)
+    public Selection(Sprite symbol, bool isCorrect)
     {
         this.symbol = symbol;
+        this.isCorrect = isCorrect;
     }
 }
 
@@ -46,8 +48,24 @@ public class Selector : MonoBehaviour {
 
 
     void Render() {
+        Debug.Log("Focused index is : " + focusedIndex);
+
+        int midPointIndex = selectionObjects.Count / 2; // 2 for 5
+        int offset = midPointIndex - focusedIndex; // 0 for focusing on 2, -1 for focusing on 3
+
 		for(int i = 0; i < selectionObjects.Count; i++)
-        {			
+        {
+            int newIndex = (i - offset + selectionObjects.Count) % selectionObjects.Count;
+            Debug.Log("Index and new index " + i + " " + newIndex);
+
+            selectionObjects[i].gameObject.transform.SetSiblingIndex(newIndex);
+
+            /*
+             * 0 1 2 3 4 
+             * 1 2 3 4 0
+             * */
+
+            /*
 			// Disable selections out of Range
 			/////////////////////////////////////
 			// we are moving a reference frame over an array
@@ -74,6 +92,7 @@ public class Selector : MonoBehaviour {
 				selectionObjects[i].rectTransform.sizeDelta = size;
 				//}
 			}
+            */
         }		
 	}
 
@@ -89,12 +108,11 @@ public class Selector : MonoBehaviour {
         }
 
         // Add choices as children
-        foreach (Transform child in transform) {
-     GameObject.Destroy(child.gameObject);
- }        for (int i = 0; i < choices.Count; i++)
+        for (int i = 0; i < choices.Count; i++)
         {
             Image selObj = Instantiate(selectionPrefab, Vector3.zero, Quaternion.identity) as Image;
             selObj.gameObject.transform.SetParent(gameObject.transform, false);
+            selObj.name = choices[i].name;
             selObj.sprite = choices[i].symbol;
             selectionObjects.Add(selObj);
         }
@@ -113,12 +131,20 @@ public class Selector : MonoBehaviour {
     void CycleLeft () {
         Debug.Log("Cycle left");
         focusedIndex--;
+        if(focusedIndex<0)
+        {
+            focusedIndex = choices.Count - 1;
+        }
 		Render();
 	}
 	
 	void CycleRight () {
         Debug.Log("Cycle right");
         focusedIndex++;
+        if(focusedIndex == choices.Count)
+        {
+            focusedIndex = 0;
+        }
 		Render();
 	}
 }
