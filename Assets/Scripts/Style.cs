@@ -6,4 +6,6 @@ using UnityEngine;
 public class Style : ScriptableObject {
 	public Color fgColor;
 	public Color bkgColor;
+	
+	public Color fgPopColor;
 }
