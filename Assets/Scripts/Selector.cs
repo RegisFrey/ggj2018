@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Selector : MonoBehaviour, IColorizable {
 
+    public ParticleSystem correctAnswerWooHoo;
 	public Selection selectionPrefab;
 	public List<Image> images;
 	[Tooltip("Must be odd for selection to be correctly indicted")]
@@ -18,6 +19,7 @@ public class Selector : MonoBehaviour, IColorizable {
 	private int visibleRange = 2;
 
     private List<DecodeChoice> choices;
+
 
     void OnEnable()
     {
@@ -106,6 +108,7 @@ public class Selector : MonoBehaviour, IColorizable {
         // Check whether the choice is correct or not
         if(focusedIndex == LoadLevelManager.Instance.GetCurrentLevel().answer)
         {
+            correctAnswerWooHoo.Play();
             GameManager.Instance.LevelCompleted(EndResult.SUCCESS);
         }
         else

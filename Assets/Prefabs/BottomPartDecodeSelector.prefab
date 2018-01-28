@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e04cd64be73f4bae9e09b85e26b5b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  correctAnswerWooHoo: {fileID: 0}
   selectionPrefab: {fileID: 114671809250429564, guid: 1e42d3bfd101745378d2ced535129ce4,
     type: 2}
   images:
