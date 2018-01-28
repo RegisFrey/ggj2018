@@ -64,11 +64,11 @@ public class InputManager : MonoBehaviour {
         string eventName = "";
         if(vel_x < 0 && state.ThumbSticks.Left.X < -0.8f)
         {
-            eventName = "ScrollingLeft";
+            eventName = "ScrollingRight";
         }
         else if(vel_x > 0 && state.ThumbSticks.Left.X > 0.8f )
         {
-            eventName = "ScrollingRight";
+            eventName = "ScrollingLeft";
         }
         if (eventName.Length > 0 && Mathf.Abs(vel_x) > 8f)
         {
