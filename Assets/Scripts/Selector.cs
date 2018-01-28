@@ -6,6 +6,11 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Selection {
 	public Sprite symbol;
+
+    public Selection(Sprite symbol)
+    {
+        this.symbol = symbol;
+    }
 }
 
 public class Selector : MonoBehaviour {
@@ -21,11 +26,14 @@ public class Selector : MonoBehaviour {
 	private int focusedIndex = 2; // start in middle
 	private int visibleRange = 2;
 
+    private List<DecodeChoice> choices;
+
     void OnEnable()
     {
         EventsManager.StartListening("SelectionButtonPressed", SelectionMade);
         EventsManager.StartListening("ScrollingRight", CycleRight);
         EventsManager.StartListening("ScrollingLeft", CycleLeft);
+        EventsManager.StartListening("NewLevelLoaded", NewLevelLoaded);
     }
 
     void OnDisable()
@@ -33,22 +41,9 @@ public class Selector : MonoBehaviour {
         EventsManager.StopListening("SelectionButtonPressed", SelectionMade);
         EventsManager.StopListening("ScrollingRight", CycleRight);
         EventsManager.StopListening("ScrollingLeft", CycleLeft);
+        EventsManager.StopListening("NewLevelLoaded", NewLevelLoaded);
     }
 
-    // Use this for initialization
-    void Start () {
-		visibleRange = focusedIndex = (int)Mathf.Floor(visibleSelections / 2);
-		
-		for(int i = 0; i < selections.Count; i++)
-        {
-			Image selObj = Instantiate(selectionPrefab, Vector3.zero, Quaternion.identity) as Image;
-			selObj.gameObject.transform.SetParent(gameObject.transform, false);
-	        selObj.sprite = selections[i].symbol;
-			selectionObjects.Add(selObj);
-        }
-		
-		Render();
-	}
 
     void Render() {
 		for(int i = 0; i < selectionObjects.Count; i++)
@@ -81,6 +76,31 @@ public class Selector : MonoBehaviour {
 			}
         }		
 	}
+
+    void NewLevelLoaded()
+    {
+        visibleRange = focusedIndex = (int)Mathf.Floor(visibleSelections / 2);
+        choices = LoadLevelManager.Instance.GetCurrentLevel().choices;
+        // Remove all children
+        selectionObjects.Clear();
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        // Add choices as children
+        foreach (Transform child in transform) {
+     GameObject.Destroy(child.gameObject);
+ }        for (int i = 0; i < choices.Count; i++)
+        {
+            Image selObj = Instantiate(selectionPrefab, Vector3.zero, Quaternion.identity) as Image;
+            selObj.gameObject.transform.SetParent(gameObject.transform, false);
+            selObj.sprite = choices[i].symbol;
+            selectionObjects.Add(selObj);
+        }
+
+        Render();
+    }
 
     void SelectionMade()
     {
