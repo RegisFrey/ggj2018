@@ -6,8 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/IntroScene.unity
-    guid: d07d14c897e0a1e4a83cf75a22dfd698
-  - enabled: 1
-    path: Assets/Scenes/GameScene.unity
-    guid: 17c3e6f56912eff42bc1759a89a5758f
+    path: Assets/Scenes/3DUI-Regis.unity
+    guid: 26d3cbb0417464541beb17866a2a6dce
