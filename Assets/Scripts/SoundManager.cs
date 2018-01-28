@@ -35,6 +35,11 @@ using UnityEngine;
         src.panStereo = currentPan;
     }
 
+    public void Play()
+    {
+        src.Play();
+    }
+
 }
 
 public class SoundManager : MonoBehaviour {
@@ -92,5 +97,13 @@ public class SoundManager : MonoBehaviour {
     public void MakeDistortion(bool shouldDistort)
     {
         distortionFilter.distortionLevel = shouldDistort ? fullDistortionEffect : 0;
+    }
+
+    public void StartGameMusic()
+    {
+        baseBeat.Play();
+        wupDownUp.Play();
+        shimmer.Play();
+        noise.Play();
     }
 }

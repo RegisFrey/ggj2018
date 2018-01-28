@@ -25,5 +25,6 @@ public class TitleScreenManager : MonoBehaviour {
     {
         titleScreen.SetActive(false);
         LoadLevelManager.Instance.LoadLevel();
+        SoundManager.Instance.StartGameMusic();
     }
 }
