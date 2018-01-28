@@ -13,11 +13,11 @@ public class KeyboardInput : MonoBehaviour {
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            EventsManager.TriggerEvent("ScrollingLeft");
+            EventsManager.TriggerEvent("ScrollingRight");
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
-            EventsManager.TriggerEvent("ScrollingRight");
+            EventsManager.TriggerEvent("ScrollingLeft");
         }
     }
 }
