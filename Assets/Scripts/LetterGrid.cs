@@ -94,6 +94,7 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 	public void Colorize(StyleSet s)
 	{
 		this.style = s;
+		RenderLetterGrid();
 	}
 	
 	public static int WrapIndex(int index, int length)

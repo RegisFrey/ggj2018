@@ -23,8 +23,13 @@ public class GridLetter : MonoBehaviour {
 	
 	public void LetterStyle (Style s) {
 		letter.color = s.fgColor;
-		// backing.gameObject.SetActive(true); // could disable if style matches main bkg style
-		backing.color = s.bkgColor;
+		if( s.bkgColor == GameManager.Instance.UIManager.UIStyleSet.primary.bkgColor ) {
+			backing.gameObject.SetActive(false);
+		}
+		else {
+			backing.gameObject.SetActive(true);
+			backing.color = s.bkgColor;
+		}
 		glitch.color = s.fgColor;
 	}
 }
