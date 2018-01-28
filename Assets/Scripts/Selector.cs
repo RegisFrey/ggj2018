@@ -125,11 +125,11 @@ public class Selector : MonoBehaviour {
         Debug.Log("Selection made!!!");
         // Check whether the choice is correct or not
 
+
         LoadLevelManager.Instance.LoadNextLevel();
     }
 
     void CycleLeft () {
-        Debug.Log("Cycle left");
         focusedIndex--;
         if(focusedIndex<0)
         {
@@ -139,7 +139,6 @@ public class Selector : MonoBehaviour {
 	}
 	
 	void CycleRight () {
-        Debug.Log("Cycle right");
         focusedIndex++;
         if(focusedIndex == choices.Count)
         {
