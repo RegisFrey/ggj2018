@@ -60,19 +60,22 @@ public class InputManager : MonoBehaviour {
 
         // Detect joystick movement
 
-        float vel_x = (state.ThumbSticks.Left.X - prevState.ThumbSticks.Left.X)/ Time.deltaTime;
-        string eventName = "";
-        if(vel_x < 0 && state.ThumbSticks.Left.X < -0.8f)
+        if (!GameManager.Instance.IsInGameOver())
         {
-            eventName = "ScrollingRight";
-        }
-        else if(vel_x > 0 && state.ThumbSticks.Left.X > 0.8f )
-        {
-            eventName = "ScrollingLeft";
-        }
-        if (eventName.Length > 0 && Mathf.Abs(vel_x) > 8f)
-        {
-            EventsManager.TriggerEvent(eventName);
+            float vel_x = (state.ThumbSticks.Left.X - prevState.ThumbSticks.Left.X) / Time.deltaTime;
+            string eventName = "";
+            if (vel_x < 0 && state.ThumbSticks.Left.X < -0.8f)
+            {
+                eventName = "ScrollingRight";
+            }
+            else if (vel_x > 0 && state.ThumbSticks.Left.X > 0.8f)
+            {
+                eventName = "ScrollingLeft";
+            }
+            if (eventName.Length > 0 && Mathf.Abs(vel_x) > 8f)
+            {
+                EventsManager.TriggerEvent(eventName);
+            }
         }
 
     }

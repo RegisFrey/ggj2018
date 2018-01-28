@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour {
     public float percentageCorruptionLeft;
     public float percentageCorruptionRight;
 
+    private bool inGameOverState = false;
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -49,8 +51,14 @@ public class GameManager : MonoBehaviour {
         EventsManager.StopListening("NewLevelLoaded", NewLevelLoaded);
     }
 
+    public bool IsInGameOver()
+    {
+        return inGameOverState;
+    }
+
     void NewLevelLoaded()
     {
+        inGameOverState = false;
         levelTimeRemaining = LoadLevelManager.Instance.GetCurrentLevel().seconds;
         UIManager.ColorizeUI(LoadLevelManager.Instance.GetCurrentLevel().style);
 
@@ -61,6 +69,13 @@ public class GameManager : MonoBehaviour {
 
     public void LevelCompleted(EndResult result)
     {
+        if(inGameOverState)
+        {
+            Debug.Log("LOAD NEW LEVEL");
+            LoadLevelManager.Instance.LoadNextLevel();
+            return;
+        }
+
         Debug.Log("Level completed: " + result);
         if (result == EndResult.TIME_UP)
         {
@@ -78,10 +93,14 @@ public class GameManager : MonoBehaviour {
     
     public void GameOver()
     {
+        Debug.Log("GAME OVER");
+        inGameOverState = true;
         // go error state
         UIManager.ColorizeUI(failStyle);
         // show dialog
+
         // camera transition from dialog
+
     }
 
     public float TargetLeftTrigger { get { return targetLeftTrigger; } }
@@ -103,17 +122,21 @@ public class GameManager : MonoBehaviour {
 
     public void Update() 
     {
-       levelTimeRemaining -= Time.deltaTime;
-       System.TimeSpan currentTimeRemaining = System.TimeSpan.FromSeconds(levelTimeRemaining);
-       //timer.text = currentTimeRemaining.ToString("s\.fff");
-       if(timer != null) {
-         timer.text = string.Format("{0}.{1}", currentTimeRemaining.Seconds, currentTimeRemaining.Milliseconds);
-       }
-       if ( levelTimeRemaining < 0 )
-       {
-            timer.text = "00.000";
-            LevelCompleted(EndResult.TIME_UP);
-       }
+        if (!inGameOverState)
+        {
+            levelTimeRemaining -= Time.deltaTime;
+            System.TimeSpan currentTimeRemaining = System.TimeSpan.FromSeconds(levelTimeRemaining);
+            //timer.text = currentTimeRemaining.ToString("s\.fff");
+            if (timer != null)
+            {
+                timer.text = string.Format("{0}.{1}", currentTimeRemaining.Seconds, currentTimeRemaining.Milliseconds);
+            }
+            if (levelTimeRemaining < 0)
+            {
+                timer.text = "00.000";
+                LevelCompleted(EndResult.TIME_UP);
+            }
+        }
     }
 
     public void SetPercentageCorruptions(float left, float right)

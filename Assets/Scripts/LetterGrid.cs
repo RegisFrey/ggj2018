@@ -43,11 +43,18 @@ public class LetterGrid : MonoBehaviour, IColorizable {
     void OnEnable()
     {
         EventsManager.StartListening("NewLevelLoaded", NewLevelLoaded);
+        EventsManager.StartListening("SelectionButtonPressed", SelectionMade);
     }
 
     void OnDisable()
     {
         EventsManager.StopListening("NewLevelLoaded", NewLevelLoaded);
+        EventsManager.StopListening("SelectionButtonPressed", SelectionMade);
+    }
+
+    void SelectionMade()
+    {
+        StopCoroutine("UpdateLetters");
     }
 
     void NewLevelLoaded()
@@ -147,11 +154,14 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 			// Found an index!
 			targetWords.Add(codeWords[i]);
 			targetWordIndices.Add( attemptIndex );
-			// Insert to plaintext
-			//plaintext = plaintext.Substring(0, targetWordIndices[i]) + targetWords[i] + plaintext.Substring(targetWordIndices[i]);
-			//plaintext = plaintext.Insert(targetWordIndices[i], targetWord[i].Length, targetWords[i]);
-			// overwrite characters
-			plaintext = plaintext.Substring(0, targetWordIndices[i]) + targetWords[i] + plaintext.Substring(targetWordIndices[i] + targetWords[i].Length);
+            // Insert to plaintext
+            //plaintext = plaintext.Substring(0, targetWordIndices[i]) + targetWords[i] + plaintext.Substring(targetWordIndices[i]);
+            //plaintext = plaintext.Insert(targetWordIndices[i], targetWord[i].Length, targetWords[i]);
+            // overwrite characters
+            string firstPart = plaintext.Substring(0, targetWordIndices[i]);
+            string secondPart = targetWordIndices[i] + targetWords[i].Length < plaintext.Length ? plaintext.Substring(targetWordIndices[i] + targetWords[i].Length) : "";
+
+            plaintext = firstPart + targetWords[i] + secondPart;
 		}
 	}
 	
