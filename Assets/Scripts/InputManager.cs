@@ -53,25 +53,30 @@ public class InputManager : MonoBehaviour {
         prevState = state;
         state = GamePad.GetState(playerIndex);
 
-        Scene scene = SceneManager.GetActiveScene();
-        if(scene.name == "IntroScene")
-        {
-            // Use button A to advance to GameScene
-            if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
-            {
-                SceneManager.LoadScene("GameScene");
-            }
-        }
-
         // Detect if button A was pressed this frame
         if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
         {
-            EventsManager.TriggerEvent("SelectionButtonPressed");
+            if (GameManager.Instance.STATE == GameState.STARTED)
+            {
+                EventsManager.TriggerEvent("SelectionButtonPressed");
+            }
+            else if(GameManager.Instance.STATE == GameState.GAME_OVER)
+            {
+                LoadLevelManager.Instance.LoadNextLevel();
+            }
+        }
+
+        if (GameManager.Instance.STATE == GameState.TITLE)
+        {
+            if (state.Triggers.Left > 0 || state.Triggers.Right > 0)
+            {
+                EventsManager.TriggerEvent("HideTitle");
+            }
         }
 
         // Detect joystick movement
 
-        if (!GameManager.Instance.IsInGameOver())
+        if (GameManager.Instance.STATE == GameState.STARTED)
         {
             float vel_x = (state.ThumbSticks.Left.X - prevState.ThumbSticks.Left.X) / Time.deltaTime;
             string eventName = "";

@@ -9,7 +9,7 @@ public class LoadLevelManager : MonoBehaviour {
     private int curLevelIndex=0;
     private Level currentLevel;
    
-    private void LoadLevel(int levelIndex=0)
+    public void LoadLevel(int levelIndex=0)
     {
         currentLevel = levels[levelIndex];
         EventsManager.TriggerEvent("NewLevelLoaded");
@@ -47,10 +47,5 @@ public class LoadLevelManager : MonoBehaviour {
             _instance = this;
         }
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
-        LoadLevel();
     }
 }

@@ -10,6 +10,13 @@ public enum EndResult
     TIME_UP,
 };
 
+public enum GameState
+{
+    TITLE,
+    STARTED,
+    GAME_OVER,
+};
+
 public class GameManager : MonoBehaviour {
   
     // Singleton references
@@ -34,6 +41,14 @@ public class GameManager : MonoBehaviour {
 
     private bool inGameOverState = false;
 
+    private GameState state = GameState.TITLE;
+
+    public GameState STATE
+    {
+        get { return state; }
+        set { state = value; }
+    }
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -53,12 +68,13 @@ public class GameManager : MonoBehaviour {
 
     public bool IsInGameOver()
     {
-        return inGameOverState;
+        return state == GameState.GAME_OVER;
     }
 
     void NewLevelLoaded()
     {
         inGameOverState = false;
+        state = GameState.STARTED;
         levelTimeRemaining = LoadLevelManager.Instance.GetCurrentLevel().seconds;
         UIManager.ColorizeUI(LoadLevelManager.Instance.GetCurrentLevel().style);
 
@@ -69,13 +85,6 @@ public class GameManager : MonoBehaviour {
 
     public void LevelCompleted(EndResult result)
     {
-        if(inGameOverState)
-        {
-            Debug.Log("LOAD NEW LEVEL");
-            LoadLevelManager.Instance.LoadNextLevel();
-            return;
-        }
-
         Debug.Log("Level completed: " + result);
         if (result == EndResult.TIME_UP)
         {
@@ -94,6 +103,7 @@ public class GameManager : MonoBehaviour {
     public void GameOver()
     {
         Debug.Log("GAME OVER");
+        state = GameState.GAME_OVER;
         inGameOverState = true;
         // go error state
         UIManager.ColorizeUI(failStyle);
@@ -122,7 +132,7 @@ public class GameManager : MonoBehaviour {
 
     public void Update() 
     {
-        if (!inGameOverState)
+        if (state == GameState.STARTED)
         {
             levelTimeRemaining -= Time.deltaTime;
             System.TimeSpan currentTimeRemaining = System.TimeSpan.FromSeconds(levelTimeRemaining);
