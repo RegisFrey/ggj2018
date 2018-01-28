@@ -28,6 +28,7 @@ public class Level : ScriptableObject {
 	public string plaintext; 
 	
 	[Space(10)]
+	[EditInPlaceAttribute]
 	public List<DecodeChoice> choices;
 	public int answer;
 	
