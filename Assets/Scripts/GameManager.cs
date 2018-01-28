@@ -112,6 +112,25 @@ public class GameManager : MonoBehaviour {
         // camera transition from dialog
 
     }
+    
+    public StyleSet cycleUIColorSet;
+    public float cycleUISeconds = 2.0f;
+    private int currentCycleOfUIColor;
+    public StyleSet cycleUIColorScrapSet;
+    IEnumerator CycleUIColors(){
+        currentCycleOfUIColor = 0;
+        while(true) {
+            currentCycleOfUIColor++;
+            if(currentCycleOfUIColor >= cycleUIColorSet.highlights.Count) {
+                currentCycleOfUIColor = 0;
+            }
+            // copy into scrap
+            cycleUIColorScrapSet.highlights[0] = cycleUIColorScrapSet.primary;
+            cycleUIColorScrapSet.primary = cycleUIColorSet.highlights[currentCycleOfUIColor];
+            GameManager.Instance.UIManager.ColorizeUI(cycleUIColorScrapSet);
+            yield return new WaitForSeconds(cycleUISeconds);
+        }
+    }
 
     public float TargetLeftTrigger { get { return targetLeftTrigger; } }
     public float TargetRightTrigger { get { return targetRightTrigger; } }
