@@ -86,6 +86,8 @@ public class Selector : MonoBehaviour {
     {
         Debug.Log("Selection made!!!");
         // Check whether the choice is correct or not
+
+        LoadLevelManager.Instance.LoadNextLevel();
     }
 
     void CycleLeft () {

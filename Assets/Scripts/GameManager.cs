@@ -14,8 +14,9 @@ public class GameManager : MonoBehaviour {
     // Settings
     public float secondsPerLevel = 60f;
 
-    // Runtime
-    public float levelTimeRemaining = 60f;
+    private float levelTimeRemaining = 60f;
+
+    private float targetLeftTrigger, targetRightTrigger;
     
     [Range(0, 1)]
     public float percentageCorruption = 1f;
@@ -29,6 +30,29 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    void OnEnable()
+    {
+        EventsManager.StartListening("NewLevelLoaded", NewLevelLoaded);
+    }
+
+    void OnDisable()
+    {
+        EventsManager.StopListening("NewLevelLoaded", NewLevelLoaded);
+    }
+
+    void NewLevelLoaded()
+    {
+        levelTimeRemaining = LoadLevelManager.Instance.GetCurrentLevel().seconds;
+
+        // Set random targets for vibration
+        targetLeftTrigger = Random.Range(0f, 1f);
+        targetRightTrigger = Random.Range(0f, 1f);
+    }
+
+    public float TargetLeftTrigger { get { return targetLeftTrigger; } }
+    public float TargetRightTrigger { get { return targetRightTrigger; } }
+
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -41,7 +65,7 @@ public class GameManager : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
     }
-    
+
     public void Update() 
     {
        levelTimeRemaining -= Time.deltaTime;

@@ -40,29 +40,43 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 	public string ciphertext;
 	public List<GridLetter> grid;
 
-    // Use this for initialization
-    void Start () {
-		CreatePlainText();
-		// Find offset to start with
-		RectTransform container = gameObject.GetComponent<RectTransform>();
-		int widthOffset = gridWidth/2;//(int)(container.sizeDelta.x / 2);
-		int heightOffset = gridHeight/2;//(int)(container.sizeDelta.y / 2);
-		
-		// Setup grid
-		grid = new List<GridLetter>();
-        for(int i = 0; i < GridCharacters(); i++)
+    void OnEnable()
+    {
+        EventsManager.StartListening("NewLevelLoaded", NewLevelLoaded);
+    }
+
+    void OnDisable()
+    {
+        EventsManager.StopListening("NewLevelLoaded", NewLevelLoaded);
+    }
+
+    void NewLevelLoaded()
+    {
+        codeWords = LoadLevelManager.Instance.GetCurrentLevel().cluewotds;
+        noiseWords = LoadLevelManager.Instance.GetCurrentLevel().fakewotds;
+
+        CreatePlainText();
+        // Find offset to start with
+        RectTransform container = gameObject.GetComponent<RectTransform>();
+        int widthOffset = gridWidth / 2;//(int)(container.sizeDelta.x / 2);
+        int heightOffset = gridHeight / 2;//(int)(container.sizeDelta.y / 2);
+
+        // Setup grid
+        grid = new List<GridLetter>();
+        for (int i = 0; i < GridCharacters(); i++)
         {
-            grid.Add( 
-					    CreateGridLetter( 
-						    new Vector2(
-							    (((i % gridCols) * gridWidth) + widthOffset), 
-							    ((Mathf.Floor(i / gridCols) * gridHeight * -1) - heightOffset)
-						    ) 
-					    )
-				    );
+            grid.Add(
+                        CreateGridLetter(
+                            new Vector2(
+                                (((i % gridCols) * gridWidth) + widthOffset),
+                                ((Mathf.Floor(i / gridCols) * gridHeight * -1) - heightOffset)
+                            )
+                        )
+                    );
         }
-		StartCoroutine("UpdateLetters", 1f);
-	}
+        StopCoroutine("UpdateLetters");
+        StartCoroutine("UpdateLetters", 1f);
+    }
 	
 	public void Colorize(Style s)//StyleSet s)
 	{
@@ -95,6 +109,7 @@ public class LetterGrid : MonoBehaviour, IColorizable {
 	void CreatePlainText() {
 		int gridCharacters = GridCharacters();
     	int randIndex;
+        plaintext = "";
 		while(plaintext.Length < gridCharacters) {
 			randIndex = Random.Range(0, noiseWords.Count);
 			plaintext = plaintext + ' ' + noiseWords[randIndex];
