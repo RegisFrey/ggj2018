@@ -57,6 +57,12 @@ public class UIManager : MonoBehaviour {
       uiColorizable = InterfaceHelper.FindObjects<IColorizable>();
   }
   
+  public void ColorizeUI(StyleSet s)
+  {
+      uiStyleSet = s;
+      ColorizeUI();
+  }
+  
   public void ColorizeUI()
   {
     //uiStyle = uiStyleSet.primary;

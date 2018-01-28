@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour {
     // Singleton references
     public UIManager UIManager;
     
+    
     // Temporary GO references
     public Text timer;
+    public StyleSet failStyle;
     
     // Settings
     public float secondsPerLevel = 60f;
@@ -70,6 +72,14 @@ public class GameManager : MonoBehaviour {
         {
             LoadLevelManager.Instance.LoadNextLevel();
         }
+    }
+    
+    public void GameOver()
+    {
+        // go error state
+        UIManager.ColorizeUI(failStyle);
+        // show dialog
+        // camera transition from dialog
     }
 
     public float TargetLeftTrigger { get { return targetLeftTrigger; } }
