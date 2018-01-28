@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using XInputDotNetPure; // Required in C#
 
 
 public class TriggerInput : MonoBehaviour {
@@ -11,8 +10,6 @@ public class TriggerInput : MonoBehaviour {
 
     float targetLeft;
     float targetRight;
-
-    float correctnessThreshold = 0.95f;
 
     void Start () {
         // Set random targets for vibration
