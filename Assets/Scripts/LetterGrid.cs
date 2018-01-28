@@ -43,6 +43,11 @@ public class LetterGrid : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		CreatePlainText();
+		// Find offset to start with
+		RectTransform container = gameObject.GetComponent<RectTransform>();
+		int widthOffset = gridWidth/2;//(int)(container.sizeDelta.x / 2);
+		int heightOffset = gridHeight/2;//(int)(container.sizeDelta.y / 2);
+		
 		// Setup grid
 		grid = new List<GridLetter>();
         for(int i = 0; i < GridCharacters(); i++)
@@ -50,8 +55,8 @@ public class LetterGrid : MonoBehaviour {
             grid.Add( 
 					    CreateGridLetter( 
 						    new Vector2(
-							    ((i % gridCols) * gridWidth), 
-							    (Mathf.Floor(i / gridCols) * gridHeight * -1)
+							    (((i % gridCols) * gridWidth) + widthOffset), 
+							    ((Mathf.Floor(i / gridCols) * gridHeight * -1) - heightOffset)
 						    ) 
 					    )
 				    );
@@ -84,7 +89,7 @@ public class LetterGrid : MonoBehaviour {
 	
 	void CreatePlainText() {
 		int gridCharacters = GridCharacters();
-    int randIndex;
+    	int randIndex;
 		while(plaintext.Length < gridCharacters) {
 			randIndex = Random.Range(0, noiseWords.Count);
 			plaintext = plaintext + ' ' + noiseWords[randIndex];
@@ -100,8 +105,9 @@ public class LetterGrid : MonoBehaviour {
 	
 	GridLetter CreateGridLetter(Vector2 position) {
         GridLetter gl = Instantiate(gridLetterPrefab,Vector3.zero, Quaternion.identity) as GridLetter;
-				gl.gameObject.transform.SetParent(gameObject.transform, false);
-        gl.gameObject.transform.localPosition = new Vector3(position.x, position.y, 0);
+		gl.gameObject.transform.SetParent(gameObject.transform, false);
+        RectTransform glRectTransform = (RectTransform)gl.gameObject.transform;
+		glRectTransform.anchoredPosition = new Vector3(position.x, position.y, 0);
         return gl;
 	}
 
