@@ -40,14 +40,6 @@ public class LetterGrid : MonoBehaviour {
 	public string ciphertext;
 	public List<GridLetter> grid;
 
-    private Image bkgImage;
-    private Color bkgImageColor = Color.green; // testing
-
-    private void Awake()
-    {
-        bkgImage = GetComponent<Image>();
-    }
-
     // Use this for initialization
     void Start () {
 		CreatePlainText();
@@ -82,8 +74,6 @@ public class LetterGrid : MonoBehaviour {
 				// wrap i + offset
 				RenderGridLetter(grid[i], plaintext[WrapIndex(i + offset, plaintext.Length)], GameManager.Instance.PercentageCorruption, target);
 			}
-            bkgImageColor.a = 1f - GameManager.Instance.PercentageCorruption;
-            bkgImage.color = bkgImageColor;
             yield return new WaitForSeconds(numSecs);
 		}	
 	}
