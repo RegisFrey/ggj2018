@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: corp_weaponsManufacturing
   m_EditorClassIdentifier: 
   name: Corp Weapons Manufacturing
-  symbol: {fileID: 0}
+  symbol: {fileID: 21300000, guid: 1748125fca6304442830e4472fa3ae04, type: 3}
   notes: 'art: bullet, missile, tank'

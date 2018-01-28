@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: corp_bankruptcy
   m_EditorClassIdentifier: 
   name: Corp Bankruptcy
-  symbol: {fileID: 0}
+  symbol: {fileID: 21300000, guid: 5cdad5ac9f73140c084e03faccc1f50d, type: 3}
   notes: 'art: missiles'

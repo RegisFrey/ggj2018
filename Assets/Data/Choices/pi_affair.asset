@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: pi_affair
   m_EditorClassIdentifier: 
   name: Affair
-  symbol: {fileID: 0}
+  symbol: {fileID: 21300000, guid: a322680a485734c8babd77f377ee140f, type: 3}
   notes: 'art: '

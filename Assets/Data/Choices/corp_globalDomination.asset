@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: corp_globalDomination
   m_EditorClassIdentifier: 
   name: Corp Global Domination
-  symbol: {fileID: 0}
+  symbol: {fileID: 21300000, guid: 03702fe1918684bc399533ca21645159, type: 3}
   notes: 'art: sinister face, hands on planet'

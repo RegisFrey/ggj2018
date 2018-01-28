@@ -41,6 +41,5 @@ MonoBehaviour:
   choices:
   - {fileID: 11400000, guid: 59b72415d16da40f2bfb2c63cbf41dae, type: 2}
   - {fileID: 11400000, guid: f9ba2cce9781444d79db2244540cd884, type: 2}
-  - {fileID: 11400000, guid: 19659f1800cd34cafbca24c575fb532f, type: 2}
   - {fileID: 11400000, guid: 92148b67a8b854ab8bef4bcedcbc5f31, type: 2}
   answer: 0

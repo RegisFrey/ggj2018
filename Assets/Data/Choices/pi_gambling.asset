@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 724cfb7949ceb40208883d261c11a2ba, type: 3}
-  m_Name: pi_birdMemes
+  m_Name: pi_gambling
   m_EditorClassIdentifier: 
-  name: PI Bird Memes
-  symbol: {fileID: 21300000, guid: 945549c0289fa4fdc874e4c054f674ce, type: 3}
-  notes: 'art: cockatoo in computer monitor'
+  name: PI Gambling
+  symbol: {fileID: 21300000, guid: ac15167c2f3e34fdfb18e83496e93091, type: 3}
+  notes: 
