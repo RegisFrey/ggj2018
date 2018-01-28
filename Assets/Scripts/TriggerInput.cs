@@ -43,7 +43,7 @@ public class TriggerInput : MonoBehaviour {
         }
 
         GameManager.Instance.SetPercentageCorruptions(1f - vibrationLeft, 1f - vibratioRight);
-        SoundManager.Instance.SetPitch(1+(state.Triggers.Left-targetLeft)*2, 1+(state.Triggers.Right-targetRight)*2);
+        SoundManager.Instance.SetPitch(1+(state.Triggers.Left-targetLeft)*1.5f);
     }
 
     private void Update()

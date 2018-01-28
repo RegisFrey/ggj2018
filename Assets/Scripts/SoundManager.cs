@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
 
     private AudioSource[] audioSources;
+    private AudioDistortionFilter distortionFilter;
 
     private static SoundManager _instance;
     public static SoundManager Instance
@@ -25,11 +26,20 @@ public class SoundManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         audioSources = GetComponents<AudioSource>();
+        distortionFilter = GetComponent<AudioDistortionFilter>();
     }
 
-    public void SetPitch(float pitch1, float pitch2)
+    public void SetPitch(float pitch)
     {
-        audioSources[0].pitch = pitch1;
-        audioSources[audioSources.Length - 1].pitch = pitch2;
+        for(int i=0;i<audioSources.Length;i++)
+        {
+            audioSources[i].pitch = pitch;
+        }
+    }
+
+    public void SetDistortion(float distortionLevel)
+    {
+        distortionFilter.distortionLevel = distortionLevel;
+
     }
 }
