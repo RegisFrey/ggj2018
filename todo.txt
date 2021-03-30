@@ -1,0 +1,33 @@
+fade select arrows, light up when select moved left or right
+fade non selected symbols
+light up selected symbol
+LERP transition between selected symbols
+
+animate letter transitions
+
+3d-ify UI 
+(move with controller sticks, zoom in when focused on hotspot, )
+
+
+enter UI - zoom in from far
+close UI - fold down in Y
+
+connecting dialog at Start
+
+system for triggering dialogue, dialogs, and audio clips
+
+
+pulsating, rainbow FX for colorization
+
+
+FX stack: glitching, bloom, chromatic aberration 
+
+particles?
+
+grid flashing underneath?
+code from sci fi game?
+
+color palettes
+use more highlights
+
+multiple glitch types + rotations
